@@ -47,8 +47,8 @@ GIT
 
 GIT
   remote: https://github.com/r-obert/pry-rails.git
-  revision: a20b2976755e271f3ac10ff3bc52d924c69d992e
-  branch: v0.12-prompt_support
+  revision: 77f770f376077e37c69116dda39ff03ee7961f64
+  branch: master
   specs:
     pry-rails (0.3.6)
       pry (>= 0.10.4)
@@ -202,7 +202,7 @@ GEM
       octicons (= 8.1.0)
       rails
     orm_adapter (0.5.0)
-    pry (0.12.0)
+    pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (3.0.3)
@@ -363,4 +363,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.16.6
+   2.0.0.pre.1

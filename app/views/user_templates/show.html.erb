@@ -1,0 +1,37 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Photo #<%= @user.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/users" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/users/<%= @user.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit photo
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_user/<%= @user.id %>" class="btn btn-block btn-outline-secondary">
+          Delete photo
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @user.id %>
+      </dd>
+    </dl>
+  </div>
+</div>
+

@@ -59,7 +59,8 @@ group :development, :test do
   gem "dotenv-rails"
   gem "faker"
   gem "grade_runner", github: "firstdraft/grade_runner"
-  gem "pry-rails", github: "r-obert/pry-rails", branch: "v0.12-prompt_support"
+  # note had to modify the branch for pry-rails in order to get past error
+  gem "pry-rails", github: "r-obert/pry-rails", branch: "master"
   gem "web_git", github: "firstdraft/web_git"
 end
 
