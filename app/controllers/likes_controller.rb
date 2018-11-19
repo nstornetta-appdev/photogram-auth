@@ -57,7 +57,7 @@ class LikesController < ApplicationController
     @like = Like.find(params.fetch("id_to_remove"))
 
     @like.destroy
-
-    redirect_to("/likes", :notice => "Like deleted successfully.")
+    redirect_back(fallback_location: "/photos")
+    
   end
 end

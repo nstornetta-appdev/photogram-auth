@@ -46,50 +46,82 @@
       </tr>
 
       <% @photos.each do |photo| %>
-      <tr>
-        <td>
-          <%= photo.id %>
-        </td>
+        <tr>
+          <td>
+            <%= photo.id %>
+          </td>
 
-        <td>
-          <%= photo.caption %>
-        </td>
+          <td>
+            <%= photo.caption %>
+          </td>
 
-        <td>
-          <img src="<%= photo.image %>" width="200px" height="200px">
-        </td>
+          <td>
+            <img src="<%= photo.image %>" width="200px" height="200px">
+          </td>
 
-        <td>
-          <%= photo.user.username %>
-        </td>
+          <td>
+            <%= photo.user.username %>
+          </td>
 
-        <td>
-          <%= time_ago_in_words(photo.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(photo.updated_at) %> ago
-        </td>
+          <td>
+            <%= time_ago_in_words(photo.created_at) %> ago
+          </td>
+          <td>
+            <%= time_ago_in_words(photo.updated_at) %> ago
+          </td>
 
-        <td>
-          <a href="/photos/<%= photo.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% if current_user.id == photo.user_id %>
-      <tr>
-        <td>
-          <a href="/photos/<%=photo.id%>/edit">
-            Edit Photo
-          </a>
-        </td>
-        <td>
-          <a href="/delete_photo/<%=photo.id%>">
-            Delete Photo
-          </a>
-        </td>
-      </tr>
-      <% end %>
+          <td>
+            <a href="/photos/<%= photo.id %>">
+              Show details
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <% photo.comments.each do |comment|%>
+            <%= comment.body%>
+          <% end %>
+        </tr>
+        <tr>
+          <form action="/create_comment" method="post">
+            <input type="hidden" name="photo_id" value="<%=photo.id%>">
+            <input type="hidden" name="user_id" value="<%=current_user.id%>">
+            <div class="input-group">
+              <input type="text" id="body" name="body" class="form-control" placeholder="Add a comment..." required>
+              <button class="btn btn-primary">Add Comment</button>
+            </div>
+          </form>
+        </tr>
+        <% if photo.likes.select{|x| x.user_id == current_user.id }.any? %>
+          <tr>
+            <a href="/delete_like/<%=photo.likes.where(user_id: current_user.id).first.id%>" class="btn btn-link pull-right">
+              Unlike
+            </a>
+          </tr>
+        <% else %>
+          <tr>
+            <form action="/create_like" method="post">
+              <input type="hidden" name="photo_id" value="<%= photo.id %>">
+              <input type="hidden" name="user_id" value="<%= current_user.id%>">
+              <button class="btn btn-link pull-right">
+                Like
+              </button>
+            </form>
+          </tr>
+        <% end %>
+        <% if current_user.id == photo.user_id %>
+          <tr>
+            <td>
+              <a href="/photos/<%=photo.id%>/edit">
+                Edit Photo
+              </a>
+            </td>
+            <td>
+              <a href="/delete_photo/<%=photo.id%>">
+                Delete Photo
+              </a>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </table>
   </div>
