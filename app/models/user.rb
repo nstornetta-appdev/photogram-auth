@@ -7,8 +7,8 @@ class User < ApplicationRecord
   validates :username, uniqueness: { case_sensitive: false }
   validates :username, presence: true
   
-  has_many :liked_photos, :through => :likes, :source => :photo
   has_many :photos
+  has_many :liked_photos, :through => :likes, :source => :photo
   has_many :likes
   has_many :comments
 end
