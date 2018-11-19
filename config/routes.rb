@@ -73,5 +73,18 @@ Rails.application.routes.draw do
 
   # DELETE
   get("/delete_user/:id_to_remove", { :controller => "users", :action => "destroy_row" })
+  
+  #------------------------------)
+  # Routes for the Users resource:
+
+  # READ
+  get("/my_likes", { :controller => "my_likes", :action => "index" })
+
+  # UPDATE
+  get("/users/:prefill_with_id/edit", { :controller => "users", :action => "edit_form" })
+  post("/update_user/:id_to_modify", { :controller => "users", :action => "update_row" })
+
+  # DELETE
+  get("/delete_user/:id_to_remove", { :controller => "users", :action => "destroy_row" })
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
